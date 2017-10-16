@@ -15,13 +15,14 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.all.min.js"></script>
 
 </head>
 
   <script>
   $( function() {
     $(".slider").slider({
-      value:3,
+      value:-1,
       min: 0,
       max: 5,
       step: 1,
@@ -52,30 +53,30 @@
 
       <h3><strong>About You</strong></h3>
       <h4>Name (Required)</h4>
-      <input type="text" name="" id="name" class="form-control" required >
+      <input type="text" id="name" class="form-control" required >
 
       <h4>Link to Photo Image (Required)</h4>
-      <input type="text" name="" id="photo" class="form-control" required >
+      <input type="text" id="photo" class="form-control" required >
       <hr>
       
       <div id="accordion">
         <h3><strong id="title1">Question 1</strong></h3>
           <div class="clearfix">
             <h4>
-              <label for="q1">Your mind is always buzzing with unexplored ideas and plans:</label>
-              <input type="text" id="q1" readonly style="border:0; color:#f6931f;">
+              <label for="q1">If you are given $10 to milk and it cost $5,<br> how much dollars would be given back? $</label>
+              <input type="text" id="q1" class="slider-input" data-slider="slider1" readonly style="border:0; color:#f6931f;">
             </h4>
             <div id="slider1" class="slider-width slider" data-question="q1" data-title="title1">
-              <div class="pull-left"><h5>Strongly Disagree</h5></div>
-              <div class="pull-right"><h5>Strongly Agree</h5></div>
+              <div class="pull-right"><h5>$5</h5></div>
+              <div class="pull-left"><h5>$0</h5></div>
             </div>
           </div>
 
         <h3><strong id="title2">Question 2</strong></h3>
           <div class="clearfix">
             <h4>
-              <label for="q2">Generally speaking, you rely more on your experience than your imagination: </label>
-              <input type="text" id="q2" readonly style="border:0; color:#f6931f;">
+              <label for="q2">Showering everyday maybe overated: </label>
+              <input type="text" id="q2" class="slider-input" data-slider="slider2" readonly style="border:0; color:#f6931f;">
             </h4>
             <div id="slider2" class="slider-width clearfix slider" data-question="q2" data-title="title2">
               <div class="pull-left"><h5>Strongly Disagree</h5></div>
@@ -85,19 +86,19 @@
 
         <h3><strong id="title3">Question 3</strong></h3>          
           <div class="clearfix"> 
-            <h4><label for="q3">You find it easy to stay relaxed and focused even when there is some pressure: </label>
-              <input type="text" id="q3" readonly style="border:0; color:#f6931f;">
+            <h4><label for="q3">Santa Claus and the Easter Bunny could be real: </label>
+              <input type="text" id="q3" class="slider-input" data-slider="slider3" readonly style="border:0; color:#f6931f;">
             </h4>
             <div id="slider3" class="slider-width clearfix slider" data-question="q3" data-title="title3">
-              <div class="pull-left"><h5>Strongly Disagree</h5></div>
-              <div class="pull-right"><h5>Strongly Agree</h5></div>
+              <div class="pull-left"><h5>They are real</h5></div>
+              <div class="pull-right"><h5>They are myths</h5></div>
             </div>
           </div>
 
          <h3><strong id="title4">Question 4</strong></h3>
           <div class="clearfix">          
-            <h4><label for="q4">You rarely do something just out of sheer curiosity: </label>
-              <input type="text" id="q4" readonly style="border:0; color:#f6931f;">
+            <h4><label for="q4">Skittles are better than Jolly Ranchers: </label>
+              <input type="text" id="q4" class="slider-input" readonly data-slider="slider4" style="border:0; color:#f6931f;">
             </h4>
             <div id="slider4" class="slider-width clearfix slider" data-question="q4" data-title="title4">
               <div class="pull-left"><h5>Strongly Disagree</h5></div>
@@ -107,8 +108,8 @@
 
          <h3><strong id="title5">Question 5</strong></h3>
           <div class="clearfix">          
-            <h4><label for="q5">People can rarely upset you: </label>
-              <input type="text" id="q5" readonly style="border:0; color:#f6931f;"></h4>
+            <h4><label for="q5">Bosa doughnuts crush Krispy Kreme: </label>
+              <input type="text" id="q5" class="slider-input" data-slider="slider5" readonly style="border:0; color:#f6931f;"></h4>
             <div id="slider5" class="slider-width clearfix slider" data-question="q5" data-title="title5">
               <div class="pull-left"><h5>Strongly Disagree</h5></div>
               <div class="pull-right"><h5>Strongly Agree</h5></div>
@@ -117,8 +118,8 @@
 
          <h3><strong id="title6">Question 6</strong></h3>
           <div class="clearfix"> 
-            <h4><label for="q6">It is often difficult for you to relate to other people’s feelings: </label>
-              <input type="text" id="q6" readonly style="border:0; color:#f6931f;"></h4>
+            <h4><label for="q6">Baby pictures should be banned on Facebook:</label>
+              <input type="text" id="q6" class="slider-input" readonly data-slider="slider6" style="border:0; color:#f6931f;"></h4>
             <div id="slider6" class="slider-width clearfix slider" data-question="q6" data-title="title6">
               <div class="pull-left"><h5>Strongly Disagree</h5></div>
               <div class="pull-right"><h5>Strongly Agree</h5></div>
@@ -127,74 +128,67 @@
 
          <h3><strong id="title7">Question 7</strong></h3>
           <div class="clearfix"> 
-            <h4><label for="q7">In a discussion, truth should be more important than people’s sensitivities: </label>
-              <input type="text" id="q7" readonly style="border:0; color:#f6931f;"></h4>
+            <h4><label for="q7">Amount of Taylor Swift songs I can hum: </label>
+              <input type="text" id="q7" class="slider-input" data-slider="slider7" readonly style="border:0; color:#f6931f;"></h4>
             <div id="slider7" class="slider-width clearfix slider" data-question="q7" data-title="title7">
-              <div class="pull-left"><h5>Strongly Disagree</h5></div>
-              <div class="pull-right"><h5>Strongly Agree</h5></div>
+              <div class="pull-right"><h5>a LOT (don't tell) </h5></div>
+              <div class="pull-left"><h5>who is Taylor Swift?</h5></div>
             </div>
           </div>
 
          <h3><strong id="title8">Question 8</strong></h3>
-          <div class="<label for="q8">clearfix"> 
-            <h4><label for="q8">You rarely get carried away by fantasies and ideas: </label>
-              <input type="text" id="q8" readonly style="border:0; color:#f6931f;"></h4>
+          <div class="clearfix"> 
+            <h4><label for="q8">Tacos for breakfast: </label>
+              <input type="text" id="q8" class="slider-input" data-slider="slider8" readonly style="border:0; color:#f6931f;"></h4>
             <div id="slider8" class="slider-width clearfix slider" data-question="q8" data-title="title8">
-              <div class="pull-left"><h5>Strongly Disagree</h5></div>
-              <div class="pull-right"><h5>Strongly Agree</h5></div>
+              <div class="pull-right"><h5>Si senor</h5></div>
+              <div class="pull-left"><h5>Gross</h5></div>
             </div>
           </div>
 
         <h3><strong id="title9">Question 9</strong></h3>
           <div class="clearfix"> 
-            <h4><label for="q9">You think that everyone’s views should be respected regardless of whether they are supported by facts or not: </label>
-              <input type="text" id="q9" readonly style="border:0; color:#f6931f;"></h4>
+            <h4><label for="q9">Red Bull (or any energy drink) effect on you: </label>
+              <input type="text" id="q9" class="slider-input" data-slider="slider9" readonly style="border:0; color:#f6931f;"></h4>
             <div id="slider9" class="slider-width clearfix slider" data-question="q9" data-title="title9">
-              <div class="pull-left"><h5>Strongly Disagree</h5></div>
-              <div class="pull-right"><h5>Strongly Agree</h5></div>
+              <div class="pull-right"><h5>Gives you wings</h5></div>
+              <div class="pull-left"><h5>Never touched it</h5></div>
             </div>
           </div>
 
         <h3><strong id="title10">Question 10</strong></h3>
           <div class="clearfix"> 
-            <h4><label for="q10">You feel more energetic after spending time with a group of people: </label>
-              <input type="text" id="q10" readonly style="border:0; color:#f6931f;"></h4>
+            <h4><label for="q10">It's not you, it's me: </label>
+              <input type="text" id="q10" class="slider-input" data-slider="slider10" readonly style="border:0; color:#f6931f;"></h4>
             <div id="slider10" class="slider-width clearfix slider" data-question="q10" data-title="title10">
-              <div class="pull-left"><h5>Strongly Disagree</h5></div>
-              <div class="pull-right"><h5>Strongly Agree</h5></div>
+              <div class="pull-left"><h5>It's me</h5></div>
+              <div class="pull-right"><h5>It's you</h5></div>
             </div>
           </div>
       </div>
 
-      <br>
-      <br>
-
       <!-- Submit Button -->
-      <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
-        <i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
-
-      <hr>
-        <footer class="footer">
-          <div class="container">
-              <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/afhaque/friendfinder">GitHub Repo</a></p>
-          </div>
-        </footer>
-
+      <div class="container">
+        <button type="submit" class="btn btn-primary btn-md center-block mt-2" id="submit">
+          <i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
+      </div>
   </div> <!-- container -->
 
   <!-- Modal -->
-      <div id="resultsModal" class="modal fade" role="dialog">
+      <div id="resultsModal" class="modal fade " role="dialog">
         <div class="modal-dialog">
 
           <!-- Modal content-->
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title"><strong>Best Match</strong></h2>
+              <div class="modal-header d-flex justify-content-right bg-success">
+                <h2 class="modal-title mr-auto"><strong>Your New BFF!</strong></h2>                
+                <button type="button" class="close " data-dismiss="modal">&times;</button>
               </div>
-              <div class="modal-body">
-                <h2 id="matchName"></h2>
-                <img id="matchImg" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg" alt="">
+              <div class="modal-body text-center thumbnail">
+                <img id="myBFFimage" alt="my BFF image" class="img-responsive rounded">                
+                <div class="caption">
+                  <H1 id="myBFFname">Lorem ipsum...</H1>
+                </div>                
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -206,57 +200,43 @@
 
   <script type="text/javascript">
 
-    // Chosen CSS
-    var config = {
-      '.chosen-select'           : {},
-      '.chosen-select-deselect'  : {allow_single_deselect:true},
-      '.chosen-select-no-single' : {disable_search_threshold:10},
-      '.chosen-select-no-results': {no_results_text:'Oops, nothing found!'},
-      '.chosen-select-width'     : {width:"95%"}
-    }
-    for (var selector in config) {
-      $(selector).chosen(config[selector]);
-    }
+    $("#name").val("bobo");
+    $("#photo").val("http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");
+    // $('input.slider').each(function() {
+    //   $(this).val(Math.round(Math.random()*4+1));
+    //   $("#"+this.getAttribute("data-slider")).val($(this).val());
+    // });
 
     // Capture the form inputs 
-    $("#submit").on("click", function(){
-
-      // Form validation
-      function validateForm() {
-      var isValid = true;
-      $('.form-control').each(function() {
-        if ( $(this).val() === '' )
-            isValid = false;
-      });
-
-      $('.chosen-select').each(function() {
-
-        if( $(this).val() === "")
-          isValid = false
-      })
-      return isValid;
-    }
+    $("#submit").on("click", function(event){
+      event.preventDefault();
 
     // If all required fields are filled
-    if (validateForm() == true)
-    {
-      // Create an object for the user's data
-        var userData = {
-          name: $("#name").val(),
-          photo: $("#photo").val(),
-          scores: [$("#q1").val(), $("#q2").val(), $("#q3").val(), $("#q4").val(), $("#q5").val(), $("#q6").val(), $("#q7").val(), $("#q8").val(), $("#q9").val(), $("#q10").val(), ]
-        }
+    if (validateForm() == true){   
+        var scores=[];  
 
+        // for each slider input value, push value into scores array       
+        $('input.slider').each(function() {
+          scores.push(parseInt($(this).val().trim()));
+        });     
 
-        // Grab the URL of the website
-        var currentURL = window.location.origin;
+        // Create an object for the user's data
+        var newFriend = {
+          name: $("#name").val().trim(),
+          photo: $("#photo").val().trim(),
+          scores:scores
+        };
 
-        // AJAX post the data to the friends API. 
-        $.post(currentURL + "/api/friends", userData, function(data){
+        // console.log("before:" + JSON.stringify(newFriend));
 
-          // Grab the result from the AJAX post so that the best match's name and photo are displayed.
-          $("#matchName").text(data.name);
-          $('#matchImg').attr("src", data.photo);
+        // AJAX post the data to the API. open modal with best match info
+        $.post("/api/friends", newFriend, function(data) {          
+
+          console.log("BFFName:"+data.name);
+
+          // API returns best match's name and photo to be displayed.
+          $("#myBFFname").text(data.name);
+          $('#myBFFimage').attr("src", data.photo);
 
           // Show the modal with the best match 
           $("#resultsModal").modal('toggle');
@@ -265,13 +245,34 @@
     }
     else
     {
-      alert("Please fill out all fields before submitting!");
+      swal("Please fill out all fields before submitting!");
     }
       
       return false;
     });
 
+// Form validation
+function validateForm() {
+      var isValid = true;
+      // check if name and email is entered
+      $('.form-control').each(function() {
+        if ( $(this).val() === '' )
+            isValid = false;
+      });
 
+      var unAnswered = "";
+      // check that each input slider value is not empty, 
+      $('.slider-input').each(function() {
+
+        if( $(this).val() === ""){
+          unAnswered += this.getAttribute("id") + " ";
+          isValid = false;
+        }
+      swal(unAnswered, 'not answered yet!',  'error');
+      })
+
+      return isValid;
+}
   </script>
 
 </body>

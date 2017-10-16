@@ -1,13 +1,20 @@
-// Routes
-// =============================================================
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/app/public/home.html");
-});
-app.get("/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "/app/public/survey.html"));
-});
+var path = require('path');
 
-// Get all characters
-app.get("/all", function(req, res) {
-  res.json(characters);
-});
+// ===============================================================================
+// ROUTING
+// ===============================================================================
+
+// Export HTML routes
+module.exports = function(app) {
+	// console.log('___ENTER htmlRoutes.js___');
+
+	// Home page
+	app.get('/', function(req, res) {
+		res.sendFile(path.join(__dirname, '../public/home.html'));
+	});
+
+	// Survey page
+	app.get('/survey', function(req, res) {
+		res.sendFile(path.join(__dirname, '../public/survey.html'));
+	});
+};

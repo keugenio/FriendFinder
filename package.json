@@ -1,0 +1,36 @@
+{
+  "name": "friendfinder",
+  "version": "1.0.0",
+  "description": "finds new bff's",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ajax": "^0.0.4",
+    "ajax-request": "^1.2.3",
+    "express": "^4.16.2",
+    "path": "^0.12.7",
+    "request": "^2.83.0",
+    "simple-ajax-request": "^1.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keugenio/FriendFinder.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "ajax",
+    "jquery"
+  ],
+  "author": "Kui Eugenio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keugenio/FriendFinder/issues"
+  },
+  "homepage": "https://github.com/keugenio/FriendFinder#readme"
+}

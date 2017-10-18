@@ -2,8 +2,8 @@
 
 var characters = [
   {
-  "name":"Ahmed",
-  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+  "name":"Achmed",
+  "photo":"https://is4-ssl.mzstatic.com/image/thumb/Purple1/v4/44/a7/70/44a77059-a23e-da50-6d9f-d15326776513/source/128x128.jpeg",
   "scores":[5,1,4,4,5,1,2,5,4,1]
   }
 ];

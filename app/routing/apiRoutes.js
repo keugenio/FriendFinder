@@ -9,7 +9,7 @@ var friends = require('../data/friends.js');
 
 const request = require('request');
  
-request('https://randomuser.me/api/?inc=name,picture&results=10', { json: true }, (err, res, body) => {
+request('https://randomuser.me/api/?inc=name,picture&results=13', { json: true }, (err, res, body) => {
   if (err) { return console.log(err); }
   var someNewFriends = body.results;
   for (var i = 0; i < body.results.length; i++) {
@@ -38,7 +38,7 @@ module.exports = function(app) {
   // Total list of friend entries
   app.get('/api/friends', function(req, res) {
     res.json(friends);
-  });
+  }); 
 
   // Add new friend entry
   app.post('/api/friends', function(req, res) {

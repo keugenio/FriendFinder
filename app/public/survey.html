@@ -4,22 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
   <title>Friend Finder</title>
-
-  <!-- Bootstrap CSS -->
- 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   
+  <!--   jQuery and jQuery UI -->  
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.all.min.js"></script>
 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.all.min.js"></script>
   
+  <!-- ***** keep these to together for bootstrap 4-alpha to work ***** -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <!--*******************************************************************-->
+
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
   <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script type="text/javascript" src="/public/assets/js/friendFinder.js"></script>  
   <link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
 </head>
 
@@ -27,174 +31,220 @@
   <div class="container">
     <div class="jumbotron mt-4">
       <div class="d-flex justify-content-start align-items-center polaroid rounded w-100 p-3">
-        <h1 style="font-family: 'Cinzel', serif; font-size: 4.5rem;">Friend Finder <i class="fa fa-search" aria-hidden="true"></i></h1>
-        <div class='ml-auto'>
+        <div class='mr-auto'>
           <a href="/"><button class='btn btn-md btn-inverse'><i class="fa fa-home fa-3x"></i></button></a>
-        </div>
+        </div>        
+        <h1 style="font-family: 'Cinzel', serif;">Friend Finder <i class="fa fa-search" aria-hidden="true"></i></h1>
         <div class="d-flex ml-auto">
           <h2 class=" align-self-center"><a href=" /api/friends" >/api/friends</a></h2>
         </div>
       </div>
-
+      <br>
       <h2>Survey Questions</h2>
       <hr>
       <div class="row">
         <div class="col-lg-6 col-md-6">
           <h3><strong>About You</strong></h3>
-          <h4>Name (Required)</h4>
-          <input type="text" id="name" class="form-control" required >
           <div class="row">
             <div class="col-md-6">
+              <h4>Name (Required)</h4>
+              <input type="text" id="name" class="form-control" required >
+
               <h4>Link to Photo Image (Required)</h4>
               <input type="text" id="photo" class="form-control" required>
+
             </div>
             <div class="col-md-6">
-              <img id="photoImage" class="mt-2 rounded w-75 h-100 thumbnail"></input>
+              <img id="photoImage" class="mt-2 rounded w-100 h-100 thumbnail"></input>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-12 col-md-12 container">
-              <button type="submit" class="btn btn-primary btn-lg mt-2" id="submit">
-                <i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
+          <div class="row">         
+            <div class="col-lg-12 d-flex justify-content-center col-md-12 mt-4">
+              <div class="d-inline-flex boxShadow">
+                <button type="submit" class="btn btn-primary btn-lg mt-2" id="submit">
+                  <i class="fa fa-check-circle" aria-hidden="true"></i>Submit</button>
+                </div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-md-6">          
+        <div class="col-lg-6 col-md-6">  <!-- questions -->         
           <div id="accordion">
-            <h3><strong id="title1">Question 1 : morals</strong></h3>
+            <h3><strong id="title1">Question 1 : morals</strong>
+                <button class="btn btn-danger" id="btn_qq">Quick Questions</button>
+            </h3>
               <div class="clearfix">
-                <h4>
-                  <label for="q1">You are given $5 to come back with 5 tacos.<br>You get 5 tacos for free today and the receipt is smeared with taco grease and hot sauce.<br>How much dollars would be given back? $</label>
-                  <input type="text" id="q1" class="slider-input" data-slider="slider1" readonly style="border:0; color:#f6931f;">
-                </h4>
+                  <h4>
+                    <label for="q1">You are given $5 to come back with 5 tacos. You get 5 tacos for free today and the receipt is smeared with taco grease and hot sauce. How much dollars would be given back? $
+                    <input type="text" id="q1" class="slider-input" data-slider="slider1" readonly>
+                    </label>
+                  </h4>
                 <div id="slider1" class="slider-width slider" data-question="q1" data-title="title1">
-                  <div class="pull-right"><h5>$5</h5></div>
-                  <div class="pull-left"><h5>$0</h5></div>
+                  <div class="slider-value-right"><h5>$5</h5></div>
+                  <div class="slider-value-left"><h5>$0</h5></div>
                 </div>
               </div>
 
             <h3><strong id="title2">Question 2 : hygiene</strong></h3>
               <div class="clearfix">
                 <h4>
-                  <label for="q2">Showering everyday maybe overated: </label>
-                  <input type="text" id="q2" class="slider-input" data-slider="slider2" readonly style="border:0; color:#f6931f;">
+                  <label for="q2">Showering everyday maybe overated: 
+                  <input type="text" id="q2" class="slider-input" data-slider="slider2" readonly>
+                  </label>
                 </h4>
                 <div id="slider2" class="slider-width clearfix slider" data-question="q2" data-title="title2">
-                  <div class="pull-left"><h5>Strongly<br> Disagree</h5></div>
-                  <div class="pull-right"><h5>Strongly<br> Agree</h5></div>
+                  <div class="slider-value-left"><h5>Strongly<br> Disagree</h5></div>
+                  <div class="slider-value-right"><h5>Strongly<br> Agree</h5></div>
                 </div>
               </div>
 
             <h3><strong id="title3">Question 3 : reality check</strong></h3>          
               <div class="clearfix"> 
-                <h4><label for="q3">Santa Claus and the Easter Bunny could be real: </label>
-                  <input type="text" id="q3" class="slider-input" data-slider="slider3" readonly style="border:0; color:#f6931f;">
+                <h4><label for="q3">Santa Claus and the Easter Bunny could be real: 
+                  <input type="text" id="q3" class="slider-input" data-slider="slider3" readonly>
+                </label>
                 </h4>
                 <div id="slider3" class="slider-width clearfix slider" data-question="q3" data-title="title3">
-                  <div class="pull-left"><h5>totally<br> real</h5></div>
-                  <div class="pull-right"><h5>total<br> myths</h5></div>
+                  <div class="slider-value-left"><h5>totally<br> real</h5></div>
+                  <div class="slider-value-right"><h5>total<br> myths</h5></div>
                 </div>
               </div>
 
              <h3><strong id="title4">Question 4 : sugar sweets</strong></h3>
               <div class="clearfix">          
-                <h4><label for="q4">Skittles are better than Jolly Ranchers: </label>
+                <h4><label for="q4">Skittles are better than Jolly Ranchers: 
                   <input type="text" id="q4" class="slider-input" readonly data-slider="slider4" style="border:0; color:#f6931f;">
+                </label>
                 </h4>
                 <div id="slider4" class="slider-width clearfix slider" data-question="q4" data-title="title4">
-                  <div class="pull-left"><h5>Strongly<br>Disagree</h5></div>
-                  <div class="pull-right"><h5>Strongly<br>Agree</h5></div>
+                  <div class="slider-value-left"><h5>Strongly<br>Disagree</h5></div>
+                  <div class="slider-value-right"><h5>Strongly<br>Agree</h5></div>
                 </div>
               </div>
 
              <h3><strong id="title5">Question 5 : doughnuts</strong></h3>
               <div class="clearfix">          
-                <h4><label for="q5">Bosa doughnuts crush Krispy Kreme: </label>
-                  <input type="text" id="q5" class="slider-input" data-slider="slider5" readonly style="border:0; color:#f6931f;"></h4>
+                <h4><label for="q5">Bosa doughnuts crush Krispy Kreme: 
+                  <input type="text" id="q5" class="slider-input" data-slider="slider5" readonly></h4>
+                </label>
                 <div id="slider5" class="slider-width clearfix slider" data-question="q5" data-title="title5">
-                  <div class="pull-left"><h5>Strongly<br>Disagree</h5></div>
-                  <div class="pull-right"><h5>Strongly<br>Agree</h5></div>
+                  <div class="slider-value-left"><h5>Strongly<br>Disagree</h5></div>
+                  <div class="slider-value-right"><h5>Strongly<br>Agree</h5></div>
                 </div>
               </div>
 
              <h3><strong id="title6">Question 6 : tactfulness</strong></h3>
               <div class="clearfix"> 
-                <h4><label for="q6">Baby pictures should be banned on Facebook:</label>
+                <h4><label for="q6">Baby pictures should be banned on Facebook:
                   <input type="text" id="q6" class="slider-input" readonly data-slider="slider6" style="border:0; color:#f6931f;"></h4>
+                </label>
                 <div id="slider6" class="slider-width clearfix slider" data-question="q6" data-title="title6">
-                  <div class="pull-left"><h5>StronglyDisagree</h5></div>
-                  <div class="pull-right"><h5>StronglyAgree</h5></div>
+                  <div class="slider-value-left"><h5>StronglyDisagree</h5></div>
+                  <div class="slider-value-right"><h5>StronglyAgree</h5></div>
                 </div>
               </div>
 
              <h3><strong id="title7">Question 7 : privacy</strong></h3>
               <div class="clearfix"> 
-                <h4><label for="q7">Amount of Taylor Swift songs I can hum: </label>
-                  <input type="text" id="q7" class="slider-input" data-slider="slider7" readonly style="border:0; color:#f6931f;"></h4>
+                <h4>
+                  <label for="q7">Amount of Taylor Swift songs I can hum: 
+                    <input type="text" id="q7" class="slider-input" data-slider="slider7" readonly>
+                  </label>
+                </h4>
                 <div id="slider7" class="slider-width clearfix slider" data-question="q7" data-title="title7">
-                  <div class="pull-right"><h5>a LOT</h5></div>
-                  <div class="pull-left"><h5>who?</h5></div>
+                  <div class="slider-value-right"><h5>a LOT</h5></div>
+                  <div class="slider-value-left"><h5>who?</h5></div>
                 </div>
               </div>
 
              <h3><strong id="title8">Question 8 : tacos</strong></h3>
               <div class="clearfix"> 
-                <h4><label for="q8">Tacos for breakfast: </label>
-                  <input type="text" id="q8" class="slider-input" data-slider="slider8" readonly style="border:0; color:#f6931f;"></h4>
+                <h4><label for="q8">Tacos for breakfast: 
+                    <input type="text" id="q8" class="slider-input" data-slider="slider8" readonly>
+                  </label>
+                </h4>
                 <div id="slider8" class="slider-width clearfix slider" data-question="q8" data-title="title8">
-                  <div class="pull-right"><h5>Si senor</h5></div>
-                  <div class="pull-left"><h5>Gross</h5></div>
+                  <div class="slider-value-right"><h5>Si senor</h5></div>
+                  <div class="slider-value-left"><h5>Gross</h5></div>
                 </div>
               </div>
 
             <h3><strong id="title9">Question 9 : caffeine</strong></h3>
               <div class="clearfix"> 
-                <h4><label for="q9">Red Bull (or any energy drink) effect on you: </label>
-                  <input type="text" id="q9" class="slider-input" data-slider="slider9" readonly style="border:0; color:#f6931f;"></h4>
+                <h4><label for="q9">Red Bull (or any energy drink) effect on you: 
+                    <input type="text" id="q9" class="slider-input" data-slider="slider9" readonly>
+                  </label>
+                </h4>
                 <div id="slider9" class="slider-width clearfix slider" data-question="q9" data-title="title9">
-                  <div class="pull-right"><h5>Gives you<br>wings</h5></div>
-                  <div class="pull-left"><h5>Natural<br>high</h5></div>
+                  <div class="slider-value-right"><h5>Gives you<br>wings</h5></div>
+                  <div class="slider-value-left"><h5>Natural<br>high</h5></div>
                 </div>
               </div>
 
             <h3><strong id="title10">Question 10 : The world revolves around ...</strong></h3>
               <div class="clearfix"> 
-                <h4><label for="q10">It's not you, it's me: </label>
-                  <input type="text" id="q10" class="slider-input" data-slider="slider10" readonly style="border:0; color:#f6931f;"></h4>
+                <h4><label for="q10">It's not you, it's me: 
+                    <input type="text" id="q10" class="slider-input" data-slider="slider10" readonly>
+                  </label>
+                </h4>
                 <div id="slider10" class="slider-width clearfix slider" data-question="q10" data-title="title10">
-                  <div class="pull-left"><h5>It's me</h5></div>
-                  <div class="pull-right"><h5>It's you</h5></div>
+                  <div class="slider-value-left"><h5>It's me</h5></div>
+                  <div class="slider-value-right"><h5>It's you</h5></div>
                 </div>
               </div>
           </div>
-        </div>
+        </div> // name and picture
       </div>
     </div> <!-- jumbotron -->      
   </div> <!-- container -->
 
-  <!-- Modal -->
-      <div id="resultsModal" class="modal fade " role="dialog">
-        <div class="modal-dialog">
+  <!-- results Modal -->
+  <div id="resultsModal" class="modal fade " role="dialog">
+    <div class="modal-dialog">
 
-          <!-- Modal content-->
-            <div class="modal-content">
-              <div class="modal-header d-flex justify-content-right bg-success">
-                <h2 class="modal-title mr-auto"><strong>Your New BFF!</strong></h2>                
-                <button type="button" class="close " data-dismiss="modal">&times;</button>
-              </div>
-              <div class="modal-body text-center thumbnail">
-                <img id="myBFFimage" alt="my BFF image" class="img-responsive rounded">                
-                <div class="caption">
-                  <H1 id="myBFFname">Lorem ipsum...</H1>
-                </div>                
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-right bg-success">
+            <h2 class="modal-title mr-auto"><strong>Your New BFF!</strong></h2>                
+            <button type="button" class="close " data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body text-center thumbnail">
+            <img id="myBFFimage" alt="my BFF image" class="img-responsive rounded">                
+            <div class="caption">
+              <H1 id="myBFFname">Lorem ipsum...</H1>
+            </div>                
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
-      </div>
-  <script type="text/javascript" src="/public/assets/js/friendFinder.js"></script>
+
+    </div>
+  </div>
+
+    <!-- questions Modal -->
+  <div id="questionsModal" class="modal fade " role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center bg-success">
+            <h2 class="modal-title mr-auto" id="questionTitle" ><strong>Friend Finder Survey</strong></h2>                
+          </div>
+          <div class="modal-body">
+            <div id="modalQuestion"></div>
+            <div class="d-flex justify-content-end align-items-center">
+              <div id='questionSlider' class='slider-width slider mt-2 mr-2' data-question='q#' data-title='title#'></div>
+              <div><button type="button" class="btn btn-default" id="btn_next">next</button></div>
+            </div>
+          </div>
+          <div class="modal-footer" id="modalQuestionFooter">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+
 </body>
 </html>

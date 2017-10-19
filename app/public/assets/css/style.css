@@ -3,24 +3,64 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: center;
 }
+.thumbnailSurvey {
+  margin:2px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
 
 img {
   width: 128px;
   height: 128px;
 }
-
+.jumbotron h1 {
+    font-size: 56px;
+}
 div.polaroid {
 width: 250px;
 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 text-align: center;
 }
 
-label{
+button{
+	font-style: normal;
+	font-size: 20px;
+}
+
+.boxShadow{
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	border-radius: 10px;
+}
+
+label {
   font-weight: normal;
+
+}
+.slider{
+	clear:both;
 }
 .slider-width{
   width: 50%;
 }
+.slider-input{
+	border:0; 
+	color:#f6931f; 
+	width: 20px;
+}
 .modal-content{
 	top:50px;
+}
+.modal-body{
+	font-size: xx-large;
+}
+.slider-value-left{
+	margin-top: 10px;
+	float: left;
+}
+.slider-value-right{
+	margin-top: 10px;
+	float: right;
+}
+.fa-home{
+	font-size: 56px;!important
 }

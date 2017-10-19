@@ -3,6 +3,7 @@ var path = require('path');
 
 // Import the list of friend entries
 var friends = require('../data/friends.js');
+var questions = require('../data/questions.js');
 
 // create random friends by going to randomuser to get name and image then generate random scores.
 // push each random friend to friends array 
@@ -38,6 +39,13 @@ module.exports = function(app) {
   // Total list of friend entries
   app.get('/api/friends', function(req, res) {
     res.json(friends);
+  }); 
+
+  app.get('/api/questions/:qID?', function(req, res) {
+    if (req.params.qID>=0)
+      res.json(questions[req.params.qID]);
+    else
+      res.json(questions);
   }); 
 
   // Add new friend entry

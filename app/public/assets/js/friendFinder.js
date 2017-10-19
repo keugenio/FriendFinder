@@ -1,7 +1,14 @@
+var currentQuestionNum = 0; // used to track current question using the question modal
 document.addEventListener("DOMContentLoaded", function(){
+
+      // auto populates fields for testing
+      $("#name").val("bobo");
+      $("#photo").attr("placeholder", "http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");
+      $("#photo").attr("value", "http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");      
+      $("#photoImage").attr("src", $("#photo").attr("placeholder"));
+
       $( function() {
         $(".slider").slider({
-          value:-1,
           min: 0,
           max: 5,
           step: 1,
@@ -12,18 +19,16 @@ document.addEventListener("DOMContentLoaded", function(){
             $("#"+title).text("Answered")
           }      
         });
+
+      $('input.slider-input').each(function() {
+        var aRandNum = Math.floor(Math.random()*6)
+        $(this).val(aRandNum);
+        $("#"+this.getAttribute("data-slider")).slider("value",aRandNum);
+      });
+
+
         $( "#accordion" ).accordion();  
       } );
-
-      // auto populates fields for testing
-      $("#name").val("bobo");
-      $("#photo").attr("placeholder", "http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");
-      $("#photo").attr("value", "http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");      
-      $("#photoImage").attr("src", $("#photo").attr("placeholder"));
-      $('input.slider-input').each(function() {
-        $(this).val(Math.round(Math.random()*4+1));
-        $("#"+this.getAttribute("data-slider")).val($(this).val());
-      });
 
       var unAnswered = ""; // to hold unanswered questions
 
@@ -70,12 +75,46 @@ document.addEventListener("DOMContentLoaded", function(){
         
         return false;
   });
+    $("#btn_qq").on("click", function(event){
+
+      getQuestion();
+
+      $("#questionsModal").modal();     
+  });
 
   $("#photo").change(function(){
       $("#photoImage").attr("src",$("#photo").val());
   });    
 
+  $("#questionSlider").click(function(){
+    var question = "#" + this.getAttribute("data-question");
+    var title = "#" + this.getAttribute("data-title");
+    var slider = "#" + this.getAttribute("data-slider");   
+    var currentSliderVal=$("#questionSlider").slider("value");
 
+      $(question).val(currentSliderVal);  
+      $(slider).slider("value", currentSliderVal);
+      $(title).text("Answered");
+  });
+
+  $("#btn_next").click(function(){
+    getQuestion();  
+  });
+
+  function getQuestion(){
+    // AJAX get the questions from the API. use modal as gui
+    $.get("/api/questions/"+ currentQuestionNum , function(data) { 
+      $("#modalQuestion").text(data.question);
+      $("#questionTitle").text("Question " + (currentQuestionNum+1));
+      $("#questionSlider").attr("data-question", "q" + (currentQuestionNum+1));
+      $("#questionSlider").attr("data-title", "title" + (currentQuestionNum+1));
+      $("#questionSlider").attr("data-slider", "slider" + (currentQuestionNum+1));
+      currentQuestionNum++;
+      // reset current question if all questions already answered
+      if (currentQuestionNum == 10)
+        currentQuestionNum = 0;
+    });       
+  }
 
   // Form validation
   function validateForm() {

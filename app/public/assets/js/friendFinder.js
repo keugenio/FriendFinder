@@ -2,7 +2,7 @@ var currentQuestionNum = 0; // used to track current question using the question
 document.addEventListener("DOMContentLoaded", function(){
 
       // auto populates fields for testing
-      $("#name").val("bobo");
+      // $("#name").val("bobo");
       $("#photo").attr("placeholder", "http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");
       $("#photo").attr("value", "http://cdn.newsapi.com.au/image/v1/85b6f99a1f31a83bfc4af6c71501948d");      
       $("#photoImage").attr("src", $("#photo").attr("placeholder"));
@@ -20,19 +20,18 @@ document.addEventListener("DOMContentLoaded", function(){
           }      
         });
 
-      $('input.slider-input').each(function() {
-        var aRandNum = Math.floor(Math.random()*6)
-        $(this).val(aRandNum);
-        $("#"+this.getAttribute("data-slider")).slider("value",aRandNum);
-      });
+      // auto populate values for testing
+      // $('input.slider-input').each(function() {
+      //   var aRandNum = Math.floor(Math.random()*6)
+      //   $(this).val(aRandNum);
+      //   $("#"+this.getAttribute("data-slider")).slider("value",aRandNum);
+      // });
 
 
-        $( "#accordion" ).accordion();  
+        $( "#accordion" ).accordion();  // for slider menu system
       } );
 
       var unAnswered = ""; // to hold unanswered questions
-
-
 
     // Capture the form inputs 
     $("#submit").on("click", function(event){
@@ -74,46 +73,56 @@ document.addEventListener("DOMContentLoaded", function(){
       }
         
         return false;
-  });
-    $("#btn_qq").on("click", function(event){
+    });
 
+  $("#btn_qq").on("click", function(event){ // quickly run through questions in modal window
       getQuestion();
-
       $("#questionsModal").modal();     
   });
 
+  // update the placeholder image if entered
   $("#photo").change(function(){
       $("#photoImage").attr("src",$("#photo").val());
   });    
 
+  // generic slider for quickly entering survey questions in modal window
   $("#questionSlider").click(function(){
     var question = "#" + this.getAttribute("data-question");
     var title = "#" + this.getAttribute("data-title");
     var slider = "#" + this.getAttribute("data-slider");   
     var currentSliderVal=$("#questionSlider").slider("value");
 
-      $(question).val(currentSliderVal);  
-      $(slider).slider("value", currentSliderVal);
-      $(title).text("Answered");
+    // update the acutal fields on the form for the survey
+    $(question).val(currentSliderVal);  
+    $(slider).slider("value", currentSliderVal);
+    $(title).text("Answered");
+
+    $("#questionSliderValue").text(currentSliderVal);
   });
 
+  // get next question of the survey when clicked
   $("#btn_next").click(function(){
     getQuestion();  
   });
 
   function getQuestion(){
     // AJAX get the questions from the API. use modal as gui
-    $.get("/api/questions/"+ currentQuestionNum , function(data) { 
-      $("#modalQuestion").text(data.question);
-      $("#questionTitle").text("Question " + (currentQuestionNum+1));
-      $("#questionSlider").attr("data-question", "q" + (currentQuestionNum+1));
-      $("#questionSlider").attr("data-title", "title" + (currentQuestionNum+1));
-      $("#questionSlider").attr("data-slider", "slider" + (currentQuestionNum+1));
-      currentQuestionNum++;
-      // reset current question if all questions already answered
-      if (currentQuestionNum == 10)
-        currentQuestionNum = 0;
-    });       
+    if (currentQuestionNum == 10){ // reset current question if all questions already answered
+      currentQuestionNum = 0;
+      $("#submit").click();             
+      $("#questionsModal").modal('toggle');              
+    } else {
+      $.get("/api/questions/"+ currentQuestionNum , function(data) { 
+          var modQuest = "<p>" + data.question + "&nbsp<span id='questionSliderValue'></span></p>";
+          $("#modalQuestion").empty();
+          $("#modalQuestion").append(modQuest);
+          $("#questionTitle").text("Question " + (currentQuestionNum+1));
+          $("#questionSlider").attr("data-question", "q" + (currentQuestionNum+1));
+          $("#questionSlider").attr("data-title", "title" + (currentQuestionNum+1));
+          $("#questionSlider").attr("data-slider", "slider" + (currentQuestionNum+1));
+          currentQuestionNum++;
+      }); 
+    }      
   }
 
   // Form validation
@@ -139,6 +148,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         return isValid;
   }
+
   function clearValues(){
         $('.form-control').each(function() {
           this.value = '';
